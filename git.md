@@ -20,7 +20,9 @@ $ git config --global user.email shimjm21@gmail.com<<github 가입 이메일로 
 ### 1. 저장소 초기화
 
 ``` bash
-
+$ git init
+Initialized empty Git repository in C:/Users/student/Desktop/TIL/.git/
+(master) $
 ```
 
 * (master) 는 현재 있는 브랜치 위치를 뜻하며, .git 폴더가 생성된다.
@@ -31,7 +33,7 @@ $ git config --global user.email shimjm21@gmail.com<<github 가입 이메일로 
 이력을 확정하기 위해서는 add 명령어를 통하여 staging area에 stage 시킨다.
 
 ``` bash
-$ git add                      # 현재 디렉토리를 stage
+$ git add .                    # 현재 디렉토리를 stage
 $ git add README.md            # 특정 파일을 stage
 $ git add images/              # 특정 폴더를 stage
 ```
@@ -108,8 +110,18 @@ origin  https://github.com/sjjam/TIL.git (push)
 
 ```bash
 $ git push origin master
+$ git push origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 792 bytes | 792.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/sjjam/TIL.git
+   bb5f29c..915f32e  master -> master
 ```
 
 `origin` 원격 저장소에 `push`하게 되며, github에서 확인할 수 있다.
 
-이후 작업 과정에서는 `add -> commit`으로 이력을 남기고 push로 업로드 하면 된다.
+이후 작업 과정에서는 `add -> commit`으로 이력을 남기고 `push`로 업로드 하면 된다.
