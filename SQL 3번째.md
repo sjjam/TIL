@@ -352,7 +352,7 @@ rollback;
 
 
 
-테이블 삭제
+테이블 열 삭제
 
 delete member;
 
