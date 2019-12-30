@@ -387,3 +387,11 @@ where id='lee';
 
 
 
+조회수 늘리기
+
+```sql
+update tb_board
+set hit = hit+1
+where boardnum=1;
+```
+
