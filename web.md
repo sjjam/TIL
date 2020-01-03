@@ -78,13 +78,15 @@ lib library
 
 
 
+server 등록시 admin port를 설정해주어야 된다
+
 C:\IOT\work\webwork\.metadata
 
 .metadata 설정파일이 저장되는 곳
 
 이클립스상에 서버가 인식하는 위치
 
-C:\IOT\work\webwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps
+C:\IOT\work\webwork\\.metadata\plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps
 
 
 
@@ -185,3 +187,51 @@ external로 변경
 </html>
 ```
 
+
+
+Server 삭제
+
+- server tab에서 delete
+- Project Explorer에서 servers delete and 폴더 경로체크해서 delete
+- Windows > Preferences > server > Runtime Environments에서 delete
+
+양식태그는 무조건 form으로 묶어주어야 한다.
+
+
+
+양식태그
+
+```html
+<form action="/clientweb/member/login.jsp" method = "get" // "post"
+```
+
+get 내용이 주소창에 나타남 // post내용이 요청메시지 바디에 담겨 넘어가서 주소창에 나타남
+
+```html
+<input type="submit" value="서버로 전송하기"
+```
+
+action은 절대경로로 주는 것이 일반적
+
+submit 데이터를 서버로 전송 action의 명시되어 있는 것을 실행하면서
+
+```html
+<input type="button" value="자바스크립트연결하는버튼" onclick="alert('환영합니다.')"/>
+```
+
+onclick=마우스로 클릭시에
+
+```html
+		<input type="radio" name="subject2" value="자바">자바
+		<input type="radio" name="subject2" value="JDBC">JDBC
+		<input type="radio" name="subject2" value="HTML5">HTML5
+		<input type="radio" name="subject1" value="서블릿">서블릿
+```
+
+name이 같으면 하나의 그룹으로 인식 
+
+
+
+div, span 그룹으로 묶음
+
+div는 줄바꿈 O, span는 줄바꿈 X
