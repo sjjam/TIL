@@ -235,3 +235,26 @@ name이 같으면 하나의 그룹으로 인식
 div, span 그룹으로 묶음
 
 div는 줄바꿈 O, span는 줄바꿈 X
+
+
+
+## CSS
+
+MEAN stack
+
+bootstrap(부트스트랩)
+html + css + javascript의 프레임워크
+테마, 템플릿
+
+w3schools.com > BOOTSTRAP > get started
+
+고도몰
+
+
+
+
+- bootstrap_exam 폴더를 작성
+- 주제를 정하고 주제에 대한 소개 페이지를 두 장 작성
+- bootstrap을 적용한 페이지
+
+완성 후 메일로 링크를 보내기
