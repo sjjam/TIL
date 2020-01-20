@@ -12,3 +12,11 @@ https://www.w3schools.com/bootstrap/bootstrap_theme_me.asp
 고도
 https://design.godo.co.kr/goods/freeskin-list.php?mode=godo&page=3
 
+jquery
+https://api.jquery.com/
+
+
+
+SKILL.CHARAT() "ADBC"
+INDEXOF(A) 자리
+http://www.lampcook.com/food/food_nutrition_list4.php
