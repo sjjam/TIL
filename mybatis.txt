@@ -1,0 +1,13 @@
+설정
+
+자바 배포버전 : jar
+web 배포버전 : war
+
+META-INF : 프로젝트의 설정정보를 명시해놓는 파일
+
+
+Servers에 context.xml을 META-INF에 복사 붙여넣기해줌
+
+
+http://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+가서 <resource ~~~~> 부분을 context.xml에 <context>에 붙여놓기
