@@ -296,6 +296,8 @@ output.txt 읽어오기
 
 
 
+## 2/19
+
 HDFSCopyTest
 
 	- hdfs의 파일을 읽어서 새로운 파일을 생성
@@ -408,4 +410,68 @@ sts
 ![image-20200219164630614](images/image-20200219164630614.png)
 
 commons-cli-1.2.jar 복사해서 Local iot>setup>bigdata>lib에 붙여넣기
+
+
+
+## 2/20
+
+![image-20200220103009532](images/image-20200220103009532.png)
+
+input 만들고 README.txt를 집어 넣는 작업
+
+
+
+![image-20200220103056329](images/image-20200220103056329.png)
+
+확인 결과
+
+
+
+![image-20200220104714062](images/image-20200220104714062.png)
+
+실행전
+
+![image-20200220104843134](images/image-20200220104843134.png)
+
+실행
+
+![image-20200220104912507](images/image-20200220104912507.png)
+
+실행 확인
+
+![image-20200220104944104](images/image-20200220104944104.png)
+
+
+
+sts mapreduce 작업 후에
+
+![image-20200220113938553](images/image-20200220113938553.png)
+
+바꿔준 후 
+
+![image-20200220114156199](images/image-20200220114156199.png)
+
+![image-20200220114117813](images/image-20200220114117813.png)
+
+실행
+
+----
+
+mapred.exam01 
+
+=> mapred.basic과 동일한 작업을 수행 5글자이상인 문자열만 빈도수 구하기
+
+=> /input/README.txt파일을 이용
+
+=> output
+
+​			/mywork/wordcount_exam
+
+
+
+![image-20200220142219103](images/image-20200220142219103.png)
+
+실행하고 log가서 확인하는 화면
+
+
 
