@@ -475,3 +475,88 @@ mapred.exam01
 
 
 
+## 2/21
+
+mapred.exam.stock.option
+
+- 상승마감
+- 하락마감
+- 동일금액마감
+
+
+
+## 2/24
+
+ip자동할당하지 않고 고정으로 셋팅하기
+
+etc/sysconfig/network-scripts/ifcfg-ens33
+
+![image-20200224101130598](images/image-20200224101130598.png)
+
+클러스터링해서 내부에서는 hadoop01을 인식하지만 외부에서는 그렇지 못함
+
+![image-20200224101730720](images/image-20200224101730720.png)
+
+9번 라인을 hadoop01에서 ip로 변경
+
+![image-20200224101858651](images/image-20200224101858651.png)
+
+마찬가지로 13, 17번 라인 hadoop01,hadoop02를 해다 ip로 변경
+
+![image-20200224102336728](images/image-20200224102336728.png)
+
+9번 라인 ip로 변경하고 13번라인에 접근 권한 범위를 지정가능 ex) /input or /user
+
+---
+
+sts에서 실행
+
+프로젝트 생성 후 lib, conf폴더생성 후 hadoop01에 있는 lib에 있는 파일 .txt 두개 빼고 전부 복사, conf는 core,hdfs,mapred 세개 복사
+
+그 후 build path에서 lib add, conf는 class로 add
+
+![image-20200224105327323](images/image-20200224105327323.png)
+
+string_prompt 추가
+
+
+
+
+
+![image-20200224110808290](images/image-20200224110808290.png)
+
+19~23번 라인 추가
+
+![image-20200224112519199](images/image-20200224112519199.png)
+
+
+
+![image-20200224112422792](images/image-20200224112422792.png)
+
+![image-20200224112805939](images/image-20200224112805939.png)
+
+생기면 우클릭 build-path add
+
+![image-20200224113345324](images/image-20200224113345324.png)
+
+실행하면 똑같이 결과 나옴
+
+
+
+spring에서 수정시 적용하려면 다시 export후에 위과정 반복해서 실행시켜야함
+
+![image-20200224114124105](images/image-20200224114124105.png)
+
+![image-20200224114149646](images/image-20200224114149646.png)
+
+수정 후 년도 추가 후 실행 결과
+
+-----
+
+미션
+
+IpCheck -> ip 타입으로 적절한지 체크
+
+password체크 -> 8글자이상, 대문자, 소문자, 특수문자, 숫자가 모두 포함
+
+pattern연습하면서 작업했던 코드 rename
