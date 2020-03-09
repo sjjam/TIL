@@ -560,3 +560,60 @@ IpCheck -> ip 타입으로 적절한지 체크
 password체크 -> 8글자이상, 대문자, 소문자, 특수문자, 숫자가 모두 포함
 
 pattern연습하면서 작업했던 코드 rename
+
+
+
+## 3/9
+
+![image-20200309103512779](images/image-20200309103512779.png)
+
+
+
+air로 시작하는 것들 다 지워주고 air생성 후 .csv파일들을 넣어주는 과정
+
+
+
+![image-20200309103556832](images/image-20200309103556832.png)
+
+
+
+-----
+
+
+
+![image-20200309113633216](images/image-20200309113633216.png)
+
+
+
+실행시 classnotfoundexception이 발생하는데 jar를 다시 등록안해주었기 때문
+
+![image-20200309113832171](images/image-20200309113832171.png)
+
+프로젝트 우클릭해서 export를 해주면
+
+
+
+![image-20200309113735546](images/image-20200309113735546.png)
+
+![image-20200309113756704](images/image-20200309113756704.png)
+
+
+
+mapreduce.air.combiner가 생성됨
+
+
+
+오라클 rownum
+
+![image-20200309131121797](images/image-20200309131121797.png)
+
+
+
+![image-20200309131408315](images/image-20200309131408315.png)
+
+그냥 정렬시 231로 where절 우선실행 되므로 따라서 두번째처럼 사용
+
+
+
+
+
