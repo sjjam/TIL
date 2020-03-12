@@ -1,4 +1,4 @@
-# LINUX
+# Bigdata
 
 ## 2/11
 
@@ -617,3 +617,120 @@ mapreduce.air.combiner가 생성됨
 
 
 
+
+
+## 3/11
+
+apache sqoop
+
+![image-20200311162316560](images/image-20200311162316560.png)
+
+
+
+![image-20200311162449899](images/image-20200311162449899.png)
+
+링크주소 복사 후 
+
+![image-20200311162518650](images/image-20200311162518650.png)
+
+실행
+
+![image-20200312111130409](images/image-20200312111130409.png)
+
+압축 풀기
+
+
+
+## 3/12
+
+설정파일
+
+etc 설정파일은 일반계정에서 건드리면 안됨
+
+![image-20200312104645159](images/image-20200312104645159.png)
+
+숨김파일
+
+
+
+로그인시 활성화
+
+![image-20200312105055212](images/image-20200312105055212.png)
+
+export 부분 추가
+
+저장후 적용
+
+![image-20200312110840417](images/image-20200312110840417.png)
+
+
+
+하둡에서 sql 실행
+
+![image-20200312111253307](images/image-20200312111253307.png)
+
+복사 후
+
+![image-20200312111330606](images/image-20200312111330606.png)
+
+붙여넣기
+
+![image-20200312111412492](images/image-20200312111412492.png)
+
+
+
+![image-20200312112235815](images/image-20200312112235815.png)
+
+sqoop eval -connect jdbc:oracle:thin:@70.12.115.71:1521:xe -username shop -password shop -query "select * from tb_product" 실행
+
+
+
+오라클 데이터 조회해서 결과를 하둡 hdfs에 보내기
+
+![image-20200312113435108](images/image-20200312113435108.png)
+
+![image-20200312113458749](images/image-20200312113458749.png)
+
+결과확인
+
+맵 테스크 2개 사용
+
+![image-20200312113937603](images/image-20200312113937603.png)
+
+![image-20200312114006905](images/image-20200312114006905.png)
+
+
+
+반대로 hdfs에 있는 것을 sql로 가져오기
+
+![image-20200312114650697](images/image-20200312114650697.png)
+
+테이블 생성
+
+![image-20200312123606791](images/image-20200312123606791.png)
+
+import사용
+
+/mywork/sqoop/ 데이터 넣기
+
+![image-20200312114847052](images/image-20200312114847052.png)
+
+
+
+
+
+---
+
+![image-20200312173551405](images/image-20200312173551405.png)
+
+---
+
+조건을 주어서 가져오기
+
+
+
+![image-20200312174153413](images/image-20200312174153413.png)
+
+
+
+$인식 못하므로 \앞에 붙여준다
