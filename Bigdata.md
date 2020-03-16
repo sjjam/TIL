@@ -707,7 +707,7 @@ sqoop eval -connect jdbc:oracle:thin:@70.12.115.71:1521:xe -username shop -passw
 
 테이블 생성
 
-![image-20200312123606791](images/image-20200312123606791.png)
+![image-20200314135124575](images/image-20200314135124575.png)
 
 import사용
 
@@ -734,3 +734,790 @@ import사용
 
 
 $인식 못하므로 \앞에 붙여준다
+
+
+
+
+
+## 3/13
+
+로그 확인
+
+![image-20200313093517001](images/image-20200313093517001.png)
+
+
+
+
+
+
+
+![image-20200313095358066](images/image-20200313095358066.png)
+
+-----------------
+
+
+
+apache flume
+
+http://flume.apache.org/
+
+![image-20200313101546928](images/image-20200313101546928.png)
+
+
+
+
+
+### Flume
+
+- 데이터를 추출하기 위해 사용되는 프로그램
+- 시스템로그, 웹 서버의 로그, 클릭로그, 보안로그... 비정형데이터를 HDFS에 적재하기 위해 사용하는 프로그램
+- 대규모의 로그데이터가 발생하면 효율적으로 수집하고 저장하기위해 관리
+- flume, chukwa, scribe, fluented, splunk
+
+[설정]
+
+1. 다운로드(압축풀기)
+2. .bashrc에 설정 정보 등록
+3. flume-env.sh rename하고 정보등록
+   - jdk홈디렉토리
+   - hadoop홈디렉토리
+4. flume 설정 파일에 등록
+   - flume-conf.properties.teplate을 rename해서 XXXX.properties
+   - flume agent의 source, channel, sink에 대한 정보를 등록
+
+
+
+[Flume의 구성요소]
+
+flume의 실행 중인 프로세스를 agent라 부르며 source, channel, sink로 구성
+
+
+
+1. source
+
+   - 데이터가 유입되는 지정(어떤 방식으로 데이터가 유입되는지 type으로 명시)
+   - agent명.sources.source명.type=값
+
+   1) type
+
+   - netcat : telnet을 통해서 터미널로 들어오는 입력데이터
+
+     (bind : 접속IP, port : 접속할 port)
+
+   - spoolDir : 특정 폴더에 저장된 파일
+
+     (spoolDir : 폴더명)
+
+2. channel
+
+- 데이터를 보관하는 곳(source와 sink사이의 Queue)
+
+3. sink
+
+   - 데이터를 내보내는 곳(어떤 방식으로 내보낼지 정의)
+
+   1) type
+
+   - logger : flume서버 콘솔에 출력이 전달
+
+     flume을 실행할때 -Dfluem.root.logger=INFO,console를 추가
+
+   - file_roll : file을 읽어서 가져오는 경우
+
+     (directory : 읽어온 파일을 저장할 output폴더를 명시)
+
+
+
+
+
+[flume의 실행]
+
+[hadoop@hadoop01 apache-flume-1.6.0-bin]$ ./bin/flume-ng agent --conf conf --conf-file ./conf/console.properties --name myConsole -Dflume.root.logger=INFO,console
+
+
+
+실행명령어 : ./bin/flume-ng agent
+
+옵션
+
+- --conf : 설정파일이 저장된 폴더명(-c)
+- --conf-file : 설정파일명(-f)
+- --name : agent의 이름(-n)
+- -Dflume.root.logger=INFO,console : flume의 로그창에 기록
+
+
+
+
+
+설치
+
+![image-20200313103459051](images/image-20200313103459051.png)
+
+![image-20200313103625367](images/image-20200313103625367.png)
+
+wget으로 설치
+
+
+
+![image-20200313103846895](images/image-20200313103846895.png)
+
+압축풀기
+
+
+
+![image-20200313104254318](images/image-20200313104254318.png)
+
+15, 16줄 추가
+
+![image-20200313104802674](images/image-20200313104802674.png)
+
+
+
+
+
+![image-20200313111205736](images/image-20200313111205736.png)
+
+![image-20200313111022094](images/image-20200313111022094.png)
+
+![image-20200313111601190](images/image-20200313111601190.png)
+
+![image-20200313114702691](images/image-20200313114702691.png)
+
+
+
+
+
+
+
+
+
+![image-20200313135142633](images/image-20200313135142633.png)
+
+telnet 설치
+
+
+
+sqoop 실행상태에서 터미널 하나 더 열어서 telnet
+
+![image-20200313142621400](images/image-20200313142621400.png)
+
+
+
+![image-20200313143301139](images/image-20200313143301139.png)
+
+telnet 종료
+
+
+
+hdfs에 올리기
+
+![image-20200313161956250](images/image-20200313161956250.png)
+
+작성후
+
+![image-20200313162022911](images/image-20200313162022911.png)
+
+실행
+
+
+
+파일을 input 폴더에 넣어주면 hdfs에 나타난다
+
+![image-20200313162111598](images/image-20200313162111598.png)
+
+
+
+
+
+## 3/14
+
+hadoop02에서 아파치톰캣 다운
+
+![image-20200314105259125](images/image-20200314105259125.png)
+
+![image-20200314105312730](images/image-20200314105312730.png)
+
+
+
+![image-20200314110655562](images/image-20200314110655562.png)
+
+압축해제
+
+![image-20200314112510001](images/image-20200314112510001.png)
+
+설정파일 등록
+
+![image-20200314112603910](images/image-20200314112603910.png)
+
+
+
+네트워크 상태 확인
+
+![image-20200314113023053](images/image-20200314113023053.png)
+
+
+
+tomcat start
+
+![image-20200314113051880](images/image-20200314113051880.png)
+
+
+
+실행 후 네트워크 확인
+
+![image-20200314113230048](images/image-20200314113230048.png)
+
+![image-20200314113333158](images/image-20200314113333158.png)
+
+127.0.0.1:8080으로 접속이 된다
+
+
+
+
+
+![image-20200314114612793](images/image-20200314114612793.png)
+
+두줄 등록
+
+
+
+![image-20200314114640797](images/image-20200314114640797.png)
+
+확인시 
+
+![image-20200314114702585](images/image-20200314114702585.png)
+
+접속가능해진다
+
+![image-20200314132814540](images/image-20200314132814540.png)
+
+외부프로그램으로 접속시 안된다
+
+
+
+![image-20200314132901645](images/image-20200314132901645.png)
+
+커서두줄 주석처리하면 접속됨
+
+![image-20200314132952383](images/image-20200314132952383.png)
+
+
+
+배포과정
+
+![image-20200314134251546](images/image-20200314134251546.png)
+
+실제 주소로 변경
+
+
+
+![image-20200314134339872](images/image-20200314134339872.png)
+
+export war file
+
+
+
+![image-20200314134401456](images/image-20200314134401456.png)
+
+배치를 눌러주면
+
+![image-20200314134435983](images/image-20200314134435983.png)
+
+배포가 되면 bigdatashop에 접속이 가능해진다
+
+![image-20200314134540362](images/image-20200314134540362.png)
+
+
+
+------
+
+mission
+
+1. 3번에 WAS를 구축
+2. WAS에 bigdatashop을 배포
+3. 3번에 flume을 설치
+4. tomcat의 access log를 hdfs에 저장
+   - avro 통신
+   - hdfs -> /flume/tomcatlog
+5. 메일로 제출
+   - 3번의 WAS manager화면에 배포된 목록 캡쳐
+   - hdfs에 저장된 access log 캡쳐
+   - 각 머신의 flume설정파일
+
+
+
+[테스트]
+
+하둡머신의 flume실행
+
+WAS머신의 flume실행
+
+flume_input폴더에 로그파일 copy
+
+
+
+-----
+
+## 3/16
+
+MongoDB
+
+- nosql
+- 비정형데이터(스키마가 없다)
+- json
+- join 안됨
+
+
+
+설치
+
+![image-20200316094605547](images/image-20200316094605547.png)
+
+
+
+![image-20200316101204325](images/image-20200316101204325.png)
+
+
+
+![image-20200316101246754](images/image-20200316101246754.png)
+
+
+
+path에 추가해주기
+
+C:\Program Files\MongoDB\Server\3.6\bin
+
+
+
+![image-20200316101535093](images/image-20200316101535093.png)
+
+경로 설정해서 실행
+
+![image-20200316101722876](images/image-20200316101722876.png)
+
+서버가 실행된 화면
+
+
+
+cmd창 하나 더 열어서 mongo
+
+![image-20200316101815035](images/image-20200316101815035.png)
+
+![image-20200316102304835](images/image-20200316102304835.png)
+
+해주면
+
+server cmd에서
+
+![image-20200316102349304](images/image-20200316102349304.png)
+
+연결 확인가능
+
+
+
+![image-20200316102515415](images/image-20200316102515415.png)
+
+해줘도 위와같이 연결 뜸
+
+
+
+<<용어>>
+
+- collection : 테이블
+- document : 레코드
+- field : 컬럼
+- _id : 기본키
+
+
+
+1. collection(rdbms에서 테이블)
+
+   => 관계형 데이터베이스 처럼 스키마를 정의하지 않는다.
+
+   1) 종류
+
+   - capped collection
+
+     고정 사이즈 주고 생성하는 컬렉션
+
+     미리 지정한 저장공간이 모두 사용이 되면 맨 처음에 저장된 데이터가 삭제되고 공간으로 활용
+
+   - non capped collection
+
+     일반적인 컬렉션
+
+   2) collection 관리
+
+   [생성]
+
+   db.createCollection("컬렉션명") -> 일반 collection
+
+   db.createCollection("컬렉션명",{옵션list}) -> 각각의 옵션을 설정해서 작업(json)
+
+   
+
+   [삭제]
+
+   db.collection명.drop()
+
+   
+
+   [컬렉션명 변경]
+
+   db.컬렉션명.renameCollection("변경할컬렉션명");
+
+   
+
+   [실습]
+
+   - mini 데이터베이스 생성
+   - emp (size : 10000, capped컬렉션)
+   - shop (일반컬렉션)
+   - 데이터베이스 목록, 컬렉션 목록을 캡쳐
+   - 컬렉션 validate() 화면캡쳐
+
+2. mongodb에 insert
+
+   [구문]
+
+   db.컬렉션명.insert({데이터...})
+
+   db.컬렉션명.insertOne({데이터...})
+
+   db.컬렉션명.insertMany({데이터...})
+
+   - document(관계형db에서 레코드개념)에 대한 정보는 json의 형식으로 작성
+
+   - mongodb에서 document를 삽입하면 자동으로 _id가 생성 -> 기본키의 역할
+
+     "_id" : ObjectId("5e6ee747d3bd9c758b5f3fef")
+
+     ​                          ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+     현재timestamp + machine Id + mongodb프로세스id + 순차번호(추가될때마다 증가)
+
+3. mongodb에 update
+
+   -> document 수정
+
+   -> 조건을 적용해서 수정하기 위한 코드도 json으로 구현
+
+   
+
+   [update를 위한 명령어]
+
+   $set : 해당필드의 값을 변경(업데이트를 하기 위한 명령어)
+
+   ​		   none capped collection인 경우 업데이트할 필드가 없는 경우 추가한다.
+
+   $inc : 해당필드에 저장된 숫자의 값을 증가
+
+   #unset : 원하는 필드를 삭제할 수 있다.
+
+   업데이트 옵션 : 
+
+   ​			multi => true를 추가하지 않으면 조건에 만족하는 document 중 첫 번째 document만 update
+
+   
+
+   [구문]
+
+   db.컬렉션명.update({조건필드:값},//sql의 update문 where절
+
+   ​                                    {$set:{수정할필드:수정값}},//set절
+
+   ​                                    {update와 관련된 옵션:옵션값})
+
+   
+
+   [실습]
+
+   1. id가 kang사람의 dept를 "총무"로 변경
+   2. dept가 "전산"인 모든 addr을 "안양"으로 변경
+   3. id가 jang인 document의 bonus를 1000추가하기
+   4. dept가 "인사"인 모든 document의 bonus에 2000을 추가하기
+
+4. mongodb에서 배열 관리
+
+   db.score.update({id:"jang"},
+
+   ​							   {$set:
+
+   ​                                   {info : 
+
+   ​                                         {city : ["서울","안양"],
+
+   ​                                           movie : ["겨울왕국2","극한직업","쉬리"]
+
+   ​                                         }
+
+   ​                                   }
+
+   ​                               })
+
+   
+
+   $addToSet : 배열의 요소를 추가, 없는 경우에만 값을 추가, 중복을 체크
+
+   db.score.update({id:"jang"},
+
+   ​                                  {$addToSet : {"info.city":"인천"}})
+
+   
+
+   $push : 배열의 요소를 추가, 중복을 허용
+
+   db.score.update({id:"jang},
+
+   ​                                 {$push:{"info.city":"천안"}})
+
+   
+
+   $pop : 배열에서 요소를 제거할 때 사용
+
+   1이면 마지막 요소를 제거, -1이면 첫 번째 요소를 제거
+
+   db.score.update({id:"jang"},
+
+   ​                                 {$pop:{"info.city":1}})
+
+   db.score.update({id:"jang"},
+
+   ​                                 {$pop:{"info.city":-1}})
+
+   
+
+   $each : addToSet이나 push에서 사용할 수 있다.
+
+   ​             여러 개를 배열에 추가할 때 사용
+
+   db.score.update({id:"jang"},
+
+   ​                                   {$push:
+
+   ​                                         {"info.city":
+
+   ​                                                {$each:["천안","가평","군산"]}
+
+   ​                                         }
+
+   ​                                   })
+
+   
+
+   $sort : 정렬(1:오름차순, -1:내림차순)
+
+   db.score.update({id:"jang"},
+
+   ​                                   {$push:
+
+   ​                                         {"info.city":
+
+   ​                                                {$each:["천안","가평","군산"],
+
+   ​                                                 $sort:1
+
+   ​                                                }
+
+   ​                                         }
+
+   ​                                   })
+
+   
+
+   $pull : 배열에서 조건에 만족하는 요소를 제거(조건 한 개)
+
+   db.score.update({id:"jang"},
+
+   ​                                   {$pull:{"info.city":"천안"}})
+
+   
+
+   $pullAll : 배열에서 조건에 만족하는 요소를 제거(조건을 여러 개)
+
+   db.score.update({id:"jang"},
+
+   ​                                   {$pullAll:{"info.city":"천안"}})
+
+
+
+
+
+
+
+
+
+
+
+
+
+![image-20200316103827017](images/image-20200316103827017.png)
+
+사용(conn scott/tiger랑 비슷한 느낌)
+
+![image-20200316103841951](images/image-20200316103841951.png)
+
+상태확인
+
+![image-20200316103924430](images/image-20200316103924430.png)
+
+나오기
+
+![image-20200316104745444](images/image-20200316104745444.png)
+
+테이블 생성, 목록, show collections = 테이블 목록
+
+
+
+![image-20200316111049321](images/image-20200316111049321.png)
+
+정보 확인
+
+![image-20200316111315959](images/image-20200316111315959.png)
+
+옵션줘서 생성
+
+
+
+![image-20200316111729958](images/image-20200316111729958.png)
+
+테이블 삭제
+
+
+
+![image-20200316111835559](images/image-20200316111835559.png)
+
+이름 변경
+
+
+
+![image-20200316113535304](images/image-20200316113535304.png)
+
+capped 속성인지 확인
+
+
+
+![image-20200316114157551](images/image-20200316114157551.png)
+
+insert 후 상태 확인 find = 목록 조회
+
+
+
+![image-20200316114327302](images/image-20200316114327302.png)
+
+스키마가 없음 > 사이즈가 달라도 들어간다 컬럼2개 아래 3개 insert
+
+
+
+![image-20200316131052251](images/image-20200316131052251.png)
+
+![image-20200316131157727](images/image-20200316131157727.png)
+
+data 등록, 확인
+
+
+
+![image-20200316131547347](images/image-20200316131547347.png)
+
+for문 사용
+
+![image-20200316131610999](images/image-20200316131610999.png)
+
+it 입력시 다 나옴
+
+
+
+![image-20200316132037133](images/image-20200316132037133.png)
+
+배열은 []로 관리 가능
+
+![image-20200316132602906](images/image-20200316132602906.png)
+
+![image-20200316132854297](images/image-20200316132854297.png)
+
+_id가 존재하는 것을 insert시
+
+
+
+![image-20200316142753990](images/image-20200316142753990.png)
+
+수정문 true 옵션 없으면 처음 조건 만족하는 하나만 변경된다
+
+
+
+![image-20200316143739880](images/image-20200316143739880.png)
+
+옵션 추가시 전부 바낀다
+
+
+
+![image-20200316145059582](images/image-20200316145059582.png)
+
+inc사용하면 3000 > 5000으로 변경됨
+
+![image-20200316145144321](images/image-20200316145144321.png)
+
+
+
+![image-20200316153523603](images/image-20200316153523603.png)
+
+원하는 필드 삭제
+
+
+
+배열[],객체{}
+
+
+
+addToSet
+
+![image-20200316155205750](images/image-20200316155205750.png)
+
+추가
+
+push
+
+![image-20200316155254423](images/image-20200316155254423.png)
+
+계속 추가된다
+
+
+
+
+
+![image-20200316161404484](images/image-20200316161404484.png)
+
+![image-20200316161425190](images/image-20200316161425190.png)
+
+
+
+
+
+![image-20200316161712278](images/image-20200316161712278.png)
+
+each 사용
+
+
+
+![image-20200316161942286](images/image-20200316161942286.png)
+
+sort 사용 1
+
+![image-20200316162242902](images/image-20200316162242902.png)
+
+sort 사용 -1
+
+
+
+![image-20200316162652838](images/image-20200316162652838.png)
+
+push사용 천안인게 지워진다
+
+
+
+![image-20200316162829798](images/image-20200316162829798.png)
+
+조건 두개 pullAll 사용
+
+
+
