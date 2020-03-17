@@ -1058,7 +1058,7 @@ flume_input폴더에 로그파일 copy
 
 -----
 
-## 3/16
+## 3/16 - MongoDB
 
 MongoDB
 
@@ -1337,11 +1337,243 @@ server cmd에서
 
    db.score.update({id:"jang"},
 
-   ​                                   {$pullAll:{"info.city":"천안"}})
+   ​                                   {$pullAll:{"info.city":"가평","군산"}})
+   
+5. mongodb에 저장된 데이터 조회하기 - find()
 
+   [실습1]
 
+   score의 모든 document에 num필드(1000)가 추가되도록 작업 실행결과 보기
 
+   ![image-20200317101651345](images/image-20200317101651345.png)
 
+   
+
+   1) find
+
+   db.컬렉션명.find(조건, 조회할 필드에 대한 명시)
+
+   - db.컬렉션명.find({})와 동일
+
+   - 조건, 조회할 필드에 대한 명시 모두 json
+
+   - 조회할 필드의 정보 명시
+
+     형식 : {필드명:1...} : 화면에 표시하고 싶은 필드
+
+     ​           {필드명:0} : 명시한 필드가 조회되지 않도록 처리
+
+   [조건]
+
+   $lt : <
+
+   $gt : >
+
+   $lte : <=
+
+   $gte : >=
+
+   
+
+   $or - 여러 필드를 이용해서 같이 비교 가능
+
+   $and - and 연산
+
+   $in - 하나의 필드에서만 비교
+
+   $nin - $in으로 정의한 조건을 제외한 document조회
+
+   
+
+   - addr이 인천인 데이터 : id, name, dept, addr
+
+     db.score.find({addr:"인천"},{id:1,name:1,dept:1,addr:1,_id:0})
+
+   - score 컬렉션에서 java가 90점 이상인 document조회
+
+     id,name,dept,java만 출력
+
+     db.score.find({java:{$gte:90}},{id:1,name:1,dept:1,java:1,_id:0})
+
+   - dept가 인사이거나 addr이 인천인 데이터 조회
+
+     db.score.find({$or:[{dept:"인사"},
+
+     ​                                   {addr:"인천"}]})
+
+   - id가 song, kang, hong인 데이터 조회
+
+     db.score.find({$or:[{id:"song"},
+
+     ​                                   {id:"hong"},
+
+     ​                                   {id:"kang"}]})
+
+     db.score.find({id:{$in:["song","hong","kang"]}})
+
+   - id가 song, kang, hong이 아닌 데이터 조회
+
+     db.score.find({id:{$nin:["song","hong","kang"]}})
+
+   2) 조회메소드
+
+   - findOne() : 첫 번째 document만 리턴
+
+   - find() : 모든 document리턴
+
+   - count() : 행의 갯수를 리턴
+
+   - sort({필드명:sort옵션}) : 정렬
+
+     1 => 오름차순
+
+     -1 => 내림차순
+
+   - limit(숫자) : 숫자만큼의 document만 조회
+
+   - skip(숫자) : 숫자만큼의 document를 skip하고 조회
+
+   3) 정규표현식을 적용
+
+   db.컬렉션명.find({조건필드명:/정규표현식/옵션})
+
+   [기호]
+
+   | : or
+
+   ^ : ^뒤에 문자로 시작하는지 체크
+
+   [] : 영문자 하나는 한 글자를 의미하고 []로 묶으면 여러 글자를 표현
+
+   ​	  [a-i] : a에서 i까지의 모든 영문자
+
+   
+
+   [옵션]
+
+   i : 대소문자 구분없이 조회 가능
+
+   - kim과 park인 document조회
+
+     db.score.find({id:/kim|park/})
+
+     ![image-20200317112417341](images/image-20200317112417341.png)
+
+     db.score.find({id:/kim|park/i})
+
+   - id가 k로 시작하는 document조회
+
+     db.score.find({id:/^k/})
+
+   - [a-i]까지 영문이 있는 id를 조회
+
+     db.score.find({id:/[a-i]/})
+
+   - id가 k-p로 시작하는 document조회
+
+     db.score.find({id:/^[k-p]/})
+
+   - id에 a와 i가 있는 document조회
+
+     db.score.find({id:/[ai]/})
+
+6. mongodb에 저장된 데이터 삭제하기 - remove()
+
+   - 조건을 정의하는 방법은 find()나 update()와 동일
+
+     db.score.remove({servlet:{$lt:80}})
+
+7. Aggregation
+
+   - group by와 동일개념
+
+   - 간단한 집계를 구하는 경우 mapreduce를 적용하는 것 보다 간단하게 작업
+
+   - Pipeline을 내부에서 구현
+
+     한 연산의 결과가 또 다른 연산의 input데이터로 활용
+
+     https://docs.mongodb.com/v3.6/core/aggregation-pipeline/의 그림 참고
+
+   1) 명령어(RDBMS와 비교)
+
+   $match : where절, having절
+
+   $group : group by
+
+   $sort : order by
+
+   $avg : avg그룹함수
+
+   $sum : sum그룹함수
+
+   $max : max그룹함수
+
+   
+
+   [형식]
+
+   db.컬렉션명.aggregate(aggregate명령어를 정의)
+
+   ​                                       ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+   ​                                       여러 가지를 적용해야 하는 경우 배열
+
+   $group:{_id:그룹으로 표시할 필드명, 
+
+   ​                 연산결과를 저장할 필드명:{연산함수:값}}
+
+   ​                                                                               ㅡㅡ
+
+   ​                                                                               숫자나 필드참조
+
+   $match:{필드명:{연산자:조건값}}
+
+   ​                             ㅡㅡㅡㅡㅡㅡㅡ
+
+   ​                            비교연산 or 조건이 여러 개
+
+   - addr별 인원수
+
+     db.exam.aggregate([
+
+     ​                                       {$group:{_id:"$addr",
+
+     ​                                                        num:{$sum:1}}
+
+     ​                                       }
+
+     ​                                   ])
+
+     ![image-20200317144658071](images/image-20200317144658071.png)
+
+     
+
+   - dept별 인원수
+
+     db.exam.aggregate([{$group:{_id:"$dept",num:{$sum:1}}}]);
+
+   - dept별 java점수의 평균
+
+     db.exam.aggregate([{$group:{_id:"$dept",avg:{$avg:"$java"}}}]);
+
+   - addr별 servlet합계
+
+     db.exam.aggregate([{$group:{_id:"$addr",sum:{$sum:"$servlet"}}}]);
+
+   - dept별 java점수의 평균 단, addr이 인천인 데이터만 작업
+
+     $match를 추가
+
+     db.exam.aggregate([
+
+     ​                                    {$match:{addr:"인천"}},
+
+     ​                                    {$group:{_id:"$dept",
+
+     ​                                                      평균:{$avg:"$java"}}
+
+     ​                                    }])
 
 
 
@@ -1520,4 +1752,170 @@ push사용 천안인게 지워진다
 조건 두개 pullAll 사용
 
 
+
+![image-20200316181105218](images/image-20200316181105218.png)
+
+내가한거
+
+![image-20200316181040857](images/image-20200316181040857.png)
+
+풀어주신거
+
+![image-20200317094626631](images/image-20200317094626631.png)
+
+-----------------
+
+## 3/17
+
+### MongoDB 이어서
+
+{} : json object
+
+[] : json array
+
+
+
+
+
+![image-20200317093428651](images/image-20200317093428651.png)
+
+json 데이터 하나로 펼쳐 보기
+
+db.board.find().pretty()
+
+
+
+
+
+![image-20200317094847320](images/image-20200317094847320.png)
+
+x.num=120으로 추가 db.socre.find()시 추가된거 안나옴
+
+![image-20200317094955289](images/image-20200317094955289.png)
+
+db.score.save(x) 추가된다
+
+
+
+![image-20200317095156094](images/image-20200317095156094.png)
+
+전체 데이터 갯수 db.score.find().count();
+
+
+
+![image-20200317111228449](images/image-20200317111228449.png)
+
+num이 없는거 조회
+
+
+
+![image-20200317111633562](images/image-20200317111633562.png)
+
+5개만 조회 
+
+db.score.find().limit(5);
+
+
+
+![image-20200317111806144](images/image-20200317111806144.png)
+
+5개 스킵
+
+db.score.find().skip(5);
+
+
+
+[실습]
+
+**1. Score collection에서 이름과 주소와 servlet점수를 출력해보자**
+
+![image-20200317131546132](images/image-20200317131546132.png)
+
+**2. Score collection에서 java점수 중 70점 이상을 출력해보자**
+
+![image-20200317131719464](images/image-20200317131719464.png)
+
+**3. Score collection에서 이름, java점수를 출력하고 bonus가 2000이상**
+
+**인 사람만 출력해보자**
+
+![image-20200317131847494](images/image-20200317131847494.png)
+
+**4. score에서 dept가 인사이면서 addr이 안양이거나 대구인 document 출력**
+
+![image-20200317132857897](images/image-20200317132857897.png)
+
+**5. servlet이 70에서 90사이이며 dept가 총무인 document 조회**
+
+![image-20200317134806629](images/image-20200317134806629.png)
+
+**6. score에서 이름에 김씨인 사람 조회해보기**
+
+![image-20200317135054502](images/image-20200317135054502.png)
+
+**7. score에서 servlet점수가 가장 낮은 document와 가장 높은 document 출력하기**
+
+![image-20200317140018105](images/image-20200317140018105.png)
+
+![image-20200317140032861](images/image-20200317140032861.png)
+
+
+
+![image-20200317141614085](images/image-20200317141614085.png)
+
+not, exists 사용
+
+**8. java점수가 가장 높은 document중에 7개를 출력하되 2개를 건너뛰고 출력해보자**
+
+![image-20200317140806112](images/image-20200317140806112.png)
+
+**9. 아이디에 n과 o가 들어가는 document 구하기**
+
+![image-20200317142006854](images/image-20200317142006854.png)
+
+---
+
+![image-20200317141257231](images/image-20200317141257231.png)
+
+null 체크
+
+
+
+[실습]
+
+1. dept가 인사인 document의 servlet평균 구하기
+
+   ![image-20200317153022098](images/image-20200317153022098.png)
+
+2. java가 80점이 넘는 사람들의 부서별로 몇 명인지 구하기
+
+   ![image-20200317153824942](images/image-20200317153824942.png)
+
+3. 2번 결과를 인원수데이터를 내림차순으로 정렬해 보세요.
+
+   ![image-20200317154204632](images/image-20200317154204632.png)
+
+
+
+-----
+
+### STS - mongodb
+
+pom.xml에서
+
+![image-20200317163646900](images/image-20200317163646900.png)
+
+버전 4.2.4로 변경
+
+![image-20200317163703373](images/image-20200317163703373.png)
+
+maven에서 mongodb 추가
+
+
+
+![image-20200317164201938](images/image-20200317164201938.png![image-20200317164304699](images/image-20200317164304699.png)mongo 체크하기
+
+![image-20200317170929363](images/image-20200317170929363.png)
+
+mongo 설정 추가
 
