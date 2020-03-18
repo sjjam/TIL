@@ -1919,3 +1919,68 @@ maven에서 mongodb 추가
 
 mongo 설정 추가
 
+
+
+-------------
+
+## 3/18
+
+### mongodb import/export
+
+![image-20200318092356619](images/image-20200318092356619.png)
+
+사용한 명령어
+
+
+
+export 명령어 사용해서 뽑아내는 과정
+
+![image-20200318092809131](images/image-20200318092809131.png)
+
+새 cmd 창
+
+dir/w 목록 출력 명령어(ls랑 비슷)
+
+mongoexport -d mydb -c score -o ./setup/score.json 처럼 경로 설정도 가능
+
+-d db이름 -c 컬렉션
+
+![image-20200318092851724](images/image-20200318092851724.png)
+
+score.json이 생긴다
+
+
+
+mongoimport --help
+
+명령어 도움말
+
+
+
+import 과정
+
+![image-20200318093831493](images/image-20200318093831493.png)
+
+iot폴더에 있는 test.csv를 import
+
+/herderline은 첫줄은 헤더라서 제외시킨다는 명령어
+
+![image-20200318094013104](images/image-20200318094013104.png)
+
+들어간거 확인가능
+
+-----
+
+### STS - mongodb
+
+![image-20200318095058212](images/image-20200318095058212.png)
+
+위에서 MongoTemplate를 등록했기 때문에 위처럼 @Document 사용가능 컬렉셩명 명시
+
+![image-20200318100958409](images/image-20200318100958409.png)
+
+dto
+
+![image-20200318103217309](images/image-20200318103217309.png)
+
+servlet-context에 base-package 등록
