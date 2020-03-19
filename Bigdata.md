@@ -1984,3 +1984,92 @@ dto
 ![image-20200318103217309](images/image-20200318103217309.png)
 
 servlet-context에 base-package 등록
+
+
+
+---
+
+r-project.org
+
+![image-20200318173153205](images/image-20200318173153205.png)
+
+왼쪽에 download
+
+korea 찾아서 아무거나 클릭
+
+![image-20200318173229612](images/image-20200318173229612.png)
+
+![image-20200318173249075](images/image-20200318173249075.png)
+
+![image-20200318173301352](images/image-20200318173301352.png)
+
+
+
+rstudio.com
+
+![](images/image-20200318173354849.png)
+
+product > rstudio > rstudio desktop
+
+
+
+----
+
+## 3/19
+
+R-project 설치시 경로에 한글이 포함되면 안된다. 띄어쓰기 없이 영문
+
+![image-20200319093712184](images/image-20200319093712184.png)
+
+기본으로 설치
+
+![image-20200319095056394](images/image-20200319095056394.png)
+
+R-project 실행 화면
+
+
+
+
+
+
+
+
+
+R-studio 역시 경로에 띄어쓰기 없이 영문
+
+관리자 권한으로 실행 자세히> 파일위치 열기
+
+![image-20200319095011223](images/image-20200319095011223.png)
+
+![image-20200319095033948](images/image-20200319095033948.png)
+
+
+
+R은 한줄씩 실행 > 단축키 ctrl+enter
+
+console창 clear > ctrl+l
+
+
+
+![image-20200319101751459](images/image-20200319101751459.png)
+
+? 명령어 실행하면 help에 설명이 나온다
+
+
+
+ctrl+1 / ctrl+2 로 script창이랑 console창 변경가능
+
+![image-20200319102542890](images/image-20200319102542890.png)
+
+줄바꿈 체크
+
+
+
+alt+- = <- 단축키
+
+
+
+script끼리 변수를 공유한다.
+
+
+
