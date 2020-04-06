@@ -8,3 +8,10 @@ https://developer.android.com/
 
 개발할때 버전을 맞출 수 있다.
 
+
+
+## 4/6
+
+xml  안올라 올때
+
+clean project  > rebuid project > build.gradle 두개 > sync하고 재실행
