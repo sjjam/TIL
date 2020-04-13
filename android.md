@@ -972,3 +972,46 @@ sqlite 다운
 
 
 입력한 내용이 data > data > multi.android.datamanagementpro > shared_prefs > seeting.mxl로 저장
+
+
+
+
+
+## 4/13
+
+구글 API 사용
+
+![image-20200413094814518](images/image-20200413094814518.png)
+
+ sdk 관리
+
+![image-20200413094844153](images/image-20200413094844153.png)
+
+설치
+
+
+
+### 지도 API 사용
+
+![image-20200413101159078](images/image-20200413101159078.png)
+
+두줄 추가
+
+
+
+![image-20200413101402709](images/image-20200413101402709.png)
+
+퍼미션, 발급받은 키 등록
+
+
+
+![image-20200413101512127](images/image-20200413101512127.png)
+
+화면 추가
+
+
+
+![image-20200413102314044](images/image-20200413102314044.png)
+
+실행 결과
+
