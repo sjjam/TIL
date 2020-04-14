@@ -1015,3 +1015,43 @@ sqlite 다운
 
 실행 결과
 
+
+
+## 4/14
+
+```
+android:layout_weight="1"
+```
+
+여백을 기준으로 사이즈 재조정
+
+A 가 width, height가 match_parent이면 B에 weight=1 주더라도 B안보임
+
+-----
+
+fragment, viewpager
+
+
+
+[실습]
+
+1. Fragment로 작업한 예제를 ViewPager에 추가해서 동작하도록 작성
+
+   - Fragment를 한 개 추가
+
+     지도가 출력되는 MainActivity도 추가
+
+     4개의 Fragment가 ViewPager로 실행될 수 있도록
+
+
+
+dependencies 추가
+
+![image-20200414164952963](images/image-20200414164952963.png)
+
+
+
+![image-20200414165013716](images/image-20200414165013716.png)
+
+
+
