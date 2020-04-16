@@ -1047,6 +1047,8 @@ fragment, viewpager
 
 dependencies 추가
 
+![image-20200416092505162](images/image-20200416092505162.png)
+
 ![image-20200414164952963](images/image-20200414164952963.png)
 
 
@@ -1055,3 +1057,30 @@ dependencies 추가
 
 
 
+
+
+## 4/16
+
+action bar
+
+tool bar
+
+menu
+
+tab
+
+
+
+[실습]
+
+FragmentExam01에 TabLayout이 추가되어 실행되도록 작업
+
+- 버튼과 연결되어 있는 프레그먼트를 탭과 연결되도록 수정하기
+
+- 구조를 변경하지 말고 버튼 대신에 TabLayout을 추가하고
+
+  => layout xml 파일을 변경
+
+  => 버튼을 지우고 Tab 추가
+
+- TabTest2를 참고해서 코드로 ViewPager와 TabLayout이 연결되도록 수정
