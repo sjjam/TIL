@@ -1084,3 +1084,39 @@ FragmentExam01에 TabLayout이 추가되어 실행되도록 작업
   => 버튼을 지우고 Tab 추가
 
 - TabTest2를 참고해서 코드로 ViewPager와 TabLayout이 연결되도록 수정
+
+
+
+
+
+
+
+
+
+## 4/17
+
+drawer
+
+cardview
+
+recycler
+
+
+
+
+
+## 4/20
+
+구글 API 사용
+
+Thread
+
+
+
+[실습]
+
+1. 쓰레드 프로그래밍을 구현하세요
+   - 1부터 100까지 출력 DigitThread
+   - A~Z까지 출력하는 AlpahThread
+   - ThreadExam01의 main 메소드에서 DigitThread와 AlpahThread를 동시에 실행해보자.
+
