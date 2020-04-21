@@ -1109,7 +1109,7 @@ recycler
 
 구글 API 사용
 
-Thread
+### Thread
 
 
 
@@ -1120,3 +1120,92 @@ Thread
    - A~Z까지 출력하는 AlpahThread
    - ThreadExam01의 main 메소드에서 DigitThread와 AlpahThread를 동시에 실행해보자.
 
+
+
+## 4/21
+
+### Thread
+
+Runnable
+
+[실습]
+
+ThreadTest02를 RunnableTest02로 변경
+
+- Runnable을 상속받도록 구현
+- AlphaThread -> AlphaThread2
+- DigitThread -> DigitThread2
+
+
+
+
+
+스레드가 공유 객체에 접근해 사용시 다른 스레드의 접근을 막아 주어야함
+
+=> 락을 걸어주어야 한다.
+
+synchronized
+
+![image-20200421132424453](images/image-20200421132424453.png)
+
+
+
+[실습]
+
+1. 두 계좌의 잔액을 더하는 쓰레드
+
+   - SharedObj 객체의 계좌잔액을 더해서 sysout으로 출력하는 쓰레드
+   - 5번 출력할 수 있도록
+
+2. acc1 계좌에서 acc2 계좌에 100만원씩 이체하는 작업을 수행하는 쓰레드
+
+   - 20번 이체할 수 있도록
+
+     => Account 클래스 활용, sysout으로 정보 출력
+
+   - SharedObj 객체를 이용해서 작업
+
+3. 동기화 하지 않고 테스트
+
+4. 동기화 하고 테스트
+
+메소드를 동기화
+
+public synchronized 리턴타입 메소드명(){
+
+}
+
+코드 블럭을 동기화
+
+
+
+synchronized(공유객체){
+
+​	//동기화 시킬 코드를 정의
+
+}
+
+
+
+-----
+
+### 안드로이드에서 쓰레드 처리하기
+
+1. Handler를 이용
+
+   1) 동시 실행흐름을 처리할 내용을 쓰레드 객체로 구현
+
+   2) UI쓰레드에서 Handler 객체를 생성(구현 - 하위객체)
+
+   ​	onCreate 메소드 내부에서 처리
+
+   3) worker thread에서 Handler 객체에게 작업을 의뢰
+
+   4) handler 객체에서 worker thread로 부터 의뢰받은 내용을 처리
+
+   - handleMessage 메소드를 이용해서 처리(오버라이딩해서 구현)
+
+   	- work thread한테 전달받은 값으로 view를 변경
+   	- 쓰레드로 부터 요청이 올때마다 handleMessage 메소드가 호출된다.
+
+   
