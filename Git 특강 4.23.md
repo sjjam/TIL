@@ -19,6 +19,11 @@
 - 노션앱(notion)
 - github student pack
   - https://education.github.com/pack
+- 아이콘 
+  - https://fontawesome.com/
+- bootstrap
+  - https://startbootstrap.com/themes/resume/
+- 
 
 ## Git
 
