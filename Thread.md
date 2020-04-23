@@ -22,7 +22,7 @@ ThreadTest02를 RunnableTest02로 변경
 
 synchronized
 
-![image-20200421132424453](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200421132424453.png)
+![image-20200423163240442](images/image-20200423163240442.png)
 
 
 
