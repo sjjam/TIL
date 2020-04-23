@@ -296,7 +296,7 @@ STPRICE number
 
 ![> 2 3 SELECT ename, sal , comm FROM VHEFE com IS NO NULL ; 1600 250 300 ](images/Fri, 20 Dec 2019 091155.png)
 
-- IS NOT NULL 연산자
+- IS NOT NULL 연산자.
 
  
 

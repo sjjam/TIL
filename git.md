@@ -125,3 +125,32 @@ To https://github.com/sjjam/TIL.git
 `origin` 원격 저장소에 `push`하게 되며, github에서 확인할 수 있다.
 
 이후 작업 과정에서는 `add -> commit`으로 이력을 남기고 `push`로 업로드 하면 된다.
+
+## 3. 원격 저장소 활용 명령어
+
+1. 원격 저장소 목록 조회
+
+   ```
+   $ git remote -v
+   origin https://github.com/edutak/bigiot-a.git
+   origin https://github.com/edutak/bigiot-a.git
+   ```
+
+2. 원격 저장소 설정 삭제
+
+   ```
+   $ git remote rm {원격저장소이름}
+   ```
+
+3. 원격 저장소
+
+   ```
+   $ git remote add origin {URL}
+   ```
+
+   깃아 원격저장소에 추가해줘 오리진이라고, url을
+
+   ```
+   $ git config --global -l
+   # 사용자 정보
+   ```
