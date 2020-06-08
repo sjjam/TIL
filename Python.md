@@ -14,7 +14,7 @@
 
 Agile하게 개발
 
-기획을 하고 개발을 진행하면서 중간에 다시 기획을 하는 것
+기획을 하고 개발을 진행하면서 중간에 다시 기획(추가)을 하는 것
 
 
 
@@ -53,6 +53,16 @@ https://www.python.org/
 
 
 Visual Studio Code 다운
+
+
+
+환경변수 설정
+
+path에 추가
+
+C:\Users\student\AppData\Local\Programs\Python\Python37
+
+C:\Users\student\AppData\Local\Programs\Python\Python37\Scripts
 
 
 
@@ -95,5 +105,6 @@ ctrl + shift +` 새로운 터미널 열기
 파이썬 참고
 
 https://dojang.io/course/view.php?id=7
+
 
 
