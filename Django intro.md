@@ -42,7 +42,6 @@ MTV : Model Template View
 
    앱 등록
 
-   ![image-20200609164347249](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200609164347249.png)
+   ![image-20200609170303618](images/image-20200609170303618.png)
 
    
-
