@@ -106,5 +106,5 @@ ctrl + shift +` 새로운 터미널 열기
 
 https://dojang.io/course/view.php?id=7
 
-
+http://www.pythontutor.com/visualize.html#mode=edit
 

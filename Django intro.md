@@ -2,6 +2,12 @@
 
 MTV : Model Template View
 
+참고 사이트
+
+https://docs.djangoproject.com/ko/3.0/intro/tutorial01/
+
+https://developer.mozilla.org/ko/docs/Learn/Server-side/Django
+
 ## Start Django
 
 1. 장고 설치
@@ -45,3 +51,4 @@ MTV : Model Template View
    ![image-20200609170303618](images/image-20200609170303618.png)
 
    
+
