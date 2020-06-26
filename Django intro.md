@@ -381,3 +381,268 @@ comment.article.content
 article.comment_set.all()
 ```
 
+
+
+# Django ORM 조회
+
+## 게시글 생성 ORM
+
+```bash
+user1 = User.objects.get(pk=1)
+user1
+Out[22]: <User: admin>
+
+In [23]: article1 = Article.objects.create(title='title', content='content', user=user1)
+
+In [24]: article1
+Out[24]: <Article: 11번째 글, title-content>
+
+Article.objects.create(title='title', content='content', user_id=user1.pk)
+Out[26]: <Article: 12번째 글, title-content>
+```
+
+## 댓글 생성 ORM
+
+```bash
+In [27]: Comment.objects.create(content='content', user=user1, article=article1)
+Out[27]: <Comment: Article:11번째 글, title-content, 23-content>
+```
+
+## 유저 생성 ORM
+
+```bash
+User.objects.create_user(username='name', password='password')
+```
+
+
+
+```bash
+comment = Comment.objects.get()
+
+comment.article.pk
+4
+
+comment.article.title
+title
+
+article = Article.objects.get(pk=4)
+
+
+# article과 user의 입장에서 댓글과 게시글이 있는지 없는지 모르기때문에 set.all()로 가져온다.
+article.comment_set.all()
+user1.article_set.all()
+
+# 반복문으로도 사용가능
+for article in user1.article_set.all():
+    print(article.title)
+
+
+article1 = Article.objects.get(pk=?)
+Comment.objects.create(content='content', user=user1, article=article1)
+In [31]: user1.article_set.all()
+Out[31]: <QuerySet [<Article: 1번째 글, 제목-내용`>, <Article: 4번째 글, 제목-내용>, <Article: 11번째 글, title-content>, <Article: 12번째 글, title-content>]>
+```
+
+- 1:N 관계에서 N의 입장은 항상 참조하는 관계가 존재하고 1을 보장할 수 있기 때문에 바로바로 접근가능
+- 1의 입장에서는 접근하는 방법이 달라진다
+  - `_set.all()` !!
+
+
+
+
+
+
+
+## 1:N ORM
+
+특정 게시글이 가지고 있는 전체 댓글 불러오기
+
+```bash
+article1 = Article.objects.get(pk=3)
+In [36]: article1.comment_set.all()
+Out[36]: <QuerySet [<Comment: Article:11번째 글, title-content, 23-content>]>
+```
+
+특정 댓글이 어느 게시글과 연결되어있는지 확인하기
+
+```bash
+In [37]: comment1 = Comment.objects.get(pk=1)
+
+In [38]: comment1
+Out[38]: <Comment: Article:1번째 글, 제목-내용`, 1-첫번째 댓글>
+
+In [39]: comment1.pk
+Out[39]: 1
+
+In [40]: comment1.article
+Out[40]: <Article: 1번째 글, 제목-내용`>
+
+In [41]: comment1.article.title
+Out[41]: '제목'
+```
+
+특정 게시글이 어느 유저와 연결되어있는지 확인하기
+
+```bash
+In [43]: article1.user
+Out[43]: <User: admin>
+```
+
+특정 유저가 작성한 전체 게시글 가져오기
+
+```bash
+In [47]: user1 = User.objects.get(pk=1)
+
+In [48]: user1.article_set.all()
+Out[48]: <QuerySet [<Article: 1번째 글, 제목-내용`>, <Article: 4번째 글, 제목-내용>, <Article: 11번째 글, title-content>, <Article: 12번째 글, title-content>]>
+```
+
+특정 유저가 작성한 전체 댓글 가져오기
+
+```bash
+In [49]: user1 = User.objects.get(pk=1)
+
+In [50]: user1.comment_set.all()
+Out[50]: <QuerySet [<Comment: Article:1번째 글, 제목-내용`, 1-첫번째 댓글>, <Comment: Article:1번째 글, 제목-내용`, 3-ㄱㄱ>, <Comment: Article:1번째 글, 제목-내용`, 4-ㄷㄷ>, <Comment: Article:1번째 글, 제목-내용`, 7-ee>, <Comment: Article:1번째 글, 제목-내용`, 10-rr>, <Comment: Article:1번째 글, 제목-내용`, 16-ㄴㅇㄹㅇ>, <Comment: Article:11번째 글, title-content, 23-content>]>
+```
+
+
+
+----
+
+```bash
+In [1]: doctor = Doctor.objects.create(name='KIM')
+
+In [2]: patient = Patient.objects.create(name='TOM')
+
+In [3]: doctor
+Out[3]: <Doctor: 1번 의사, KIM>
+
+In [4]: patient
+Out[4]: <Patient: 1번 환자, TOM>
+
+In [5]: Reservation.objects.create(doctor=doctor, patient=patient)
+Out[5]: <Reservation: 1번 의사, KIM의 1번 환자, TOM>
+
+In [6]: doctor.reservation_set.all()
+Out[6]: <QuerySet [<Reservation: 1번 의사, KIM의 1번 환자, TOM>]>
+
+In [7]: patient.reservation_set.all()
+Out[7]: <QuerySet [<Reservation: 1번 의사, KIM의 1번 환자, TOM>]>
+
+
+In [9]: patient2 = Patient.objects.create(name='PARK')
+
+In [10]: patient2
+Out[10]: <Patient: 2번 환자, PARK>
+
+In [11]: Reservation.objects.create(doctor=doctor, patient=patient2)
+Out[11]: <Reservation: 1번 의사, KIM의 2번 환자, PARK>
+
+In [12]: doctor.reservation_set.all()
+Out[12]: <QuerySet [<Reservation: 1번 의사, KIM의 1번 환자, TOM>, <Reservation: 1번 의사, KIM의 2번 환자, PARK>]>
+
+In [13]: for reservation in doctor.reservation_set.all():
+    ...:     print(reservation.patient.name)
+    ...: 
+TOM
+PARK
+
+In [14]:  for reservation in doctor.reservation_set.all():
+    ...:     ...:     print(reservation.patient.pk)
+    ...: 
+1
+2
+
+In [15]: for reservation in patient.reservation_set.all():
+    ...:     print(reservation.doctor.name)
+    ...: 
+KIM
+```
+
+
+
+---
+
+class Patient(models.Model):
+
+  name = models.CharField(max_length=20)
+
+  doctors = models.ManyToManyField(Doctor, through='Reservation')
+
+```bash
+In [1]: patient = Patient.objects.get(pk=1)
+
+In [2]: patient.reservation_set.all()
+Out[2]: <QuerySet [<Reservation: 1번 의사, KIM의 1번 환자, TOM>]>
+
+In [3]: patient.doctors.all()
+Out[3]: <QuerySet [<Doctor: 1번 의사, KIM>]>
+
+In [4]: doctor = Doctor.objects.get(pk=1)
+
+In [5]: doctor.reservation_set.all()
+Out[5]: <QuerySet [<Reservation: 1번 의사, KIM의 1번 환자, TOM>, <Reservation: 1번 의사, KIM의 2번 환자, PARK>]>
+
+In [6]: doctor.patient_set.all()
+Out[6]: <QuerySet [<Patient: 1번 환자, TOM>, <Patient: 2번 환자, PARK>]>
+```
+
+
+
+related_name="patients"
+
+```bash
+In [1]: doctor = Doctor.objects.get(pk=1)
+
+In [2]: doctor.patients.all()
+Out[2]: <QuerySet [<Patient: 1번 환자, TOM>, <Patient: 2번 환자, PARK>]>
+```
+
+
+
+```python
+class Doctor(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f'{self.pk}번 의사, {self.name}'
+
+class Patient(models.Model):
+    name = models.CharField(max_length=20)
+    doctors = models.ManyToManyField(Doctor, related_name="patients")
+    # through='Reservation', 
+    def __str__(self):
+        return f'{self.pk}번 환자, {self.name}'
+
+# class Reservation(models.Model):
+#     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+#     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return f'{self.doctor}의 {self.patient}'
+```
+
+후에 db 지우고 다시 하면
+
+```bash
+In [1]: doctor = Doctor.objects.create(name="KIM")
+
+In [2]: patient = Patient.objects.create(name="TOM")
+
+In [3]: doctor.patients.add(patient)
+
+In [4]: doctor.patients.all()
+Out[4]: <QuerySet [<Patient: 1번 환자, TOM>]>
+
+In [5]: doctor.patients.remove(patient)
+
+In [6]: doctor.patients.all()
+Out[6]: <QuerySet []>
+```
+
+
+
+settings.AUTH_USER_MODEL은 models.py에서만 사용하고
+
+다른 곳에서는 get_user_model() 사용
